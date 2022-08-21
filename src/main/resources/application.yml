@@ -19,6 +19,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+chat:
+  timeout: 4
 #logging:
 #  level:
 #    root: debug
