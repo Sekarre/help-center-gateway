@@ -1,13 +1,9 @@
 package com.sekarre.helpcentergateway.config;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
-import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
-import io.github.resilience4j.timelimiter.TimeLimiterRegistry;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.circuitbreaker.resilience4j.ReactiveResilience4JCircuitBreakerFactory;
-import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +24,6 @@ public class ServiceTimeoutConfig {
                 .build();
 
         return factory -> factory.configure(builder -> builder.circuitBreakerConfig(circuitBreakerConfig)
-                .timeLimiterConfig(timeLimiterConfig).build(), "fallback-chat");
+                .timeLimiterConfig(timeLimiterConfig).build(), "fallback-chat", "fallback-notification");
     }
 }

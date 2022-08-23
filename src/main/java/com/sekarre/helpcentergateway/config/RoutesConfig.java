@@ -47,6 +47,11 @@ public class RoutesConfig {
                                         .setName("fallback-notification")
                                         .setFallbackUri("forward:/default-fallback")))
                         .uri("lb://help-center-notification"))
+                .route("notification-sse", r -> r.path("/api/v1/sse/**")
+                        .filters(f-> f
+                                .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, RETAIN_FIRST.name())
+                                .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name()))
+                        .uri("lb://help-center-notification"))
                 .build();
     }
 }
