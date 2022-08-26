@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 @RequestMapping(value = "/fallback")
 public class FallbackController {
 
-    @RequestMapping
+    @RequestMapping("/default")
     public Mono<String> getFallbackMessage() {
         return Mono.just("Request failure. Try again later");
     }

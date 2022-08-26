@@ -21,7 +21,7 @@ public class RoutesConfig {
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name())
                                 .circuitBreaker(config -> config
                                         .setName("fallback-core")
-                                        .setFallbackUri("forward:/default-fallback")))
+                                        .setFallbackUri("forward:/fallback/default")))
                         .uri("lb://help-center-core"))
                 .route("auth", r -> r.path("/api/v1/auth/**")
                         .filters(f-> f
@@ -29,7 +29,7 @@ public class RoutesConfig {
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name())
                                 .circuitBreaker(config -> config
                                         .setName("fallback-auth")
-                                        .setFallbackUri("forward:/default-fallback")))
+                                        .setFallbackUri("forward:/fallback/default")))
                         .uri("lb://help-center-auth"))
                 .route("chat", r -> r.path("/api/v1/chat-info/**", "/websocket/**")
                         .filters(f-> f
@@ -37,7 +37,7 @@ public class RoutesConfig {
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name())
                                 .circuitBreaker(config -> config
                                         .setName("fallback-chat")
-                                        .setFallbackUri("forward:/default-fallback")))
+                                        .setFallbackUri("forward:/fallback/default")))
                         .uri("lb://help-center-chat"))
                 .route("notification", r -> r.path("/api/v1/event-notifications/**")
                         .filters(f-> f
@@ -45,7 +45,7 @@ public class RoutesConfig {
                                 .dedupeResponseHeader(ACCESS_CONTROL_ALLOW_ORIGIN, RETAIN_FIRST.name())
                                 .circuitBreaker(config -> config
                                         .setName("fallback-notification")
-                                        .setFallbackUri("forward:/default-fallback")))
+                                        .setFallbackUri("forward:/fallback/default")))
                         .uri("lb://help-center-notification"))
                 .route("notification-sse", r -> r.path("/api/v1/sse/**")
                         .filters(f-> f
