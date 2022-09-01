@@ -21,6 +21,3 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 chat:
   timeout: 10
-#logging:
-#  level:
-#    root: debug
